@@ -26,17 +26,16 @@ jobs:
         with:
           push: true
           tags: jerry8287/prjbe12:latest
-  run-ssh:
-    runs-on: ubuntu-latest
-    steps:
-    - name: executing remote ssh commands using ssh key
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
-        script: |
-          docker stop prjku
-          docker rm prjku
-          docker run --name prjku -d -p 8000:8000 jerry8287/prjbe12
+      - 
+        name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker stop prjku
+            docker rm prjku
+            docker rmi jerry8287/prjbe12
+            docker run --name prjku -d -p 8000:8000 jerry8287/prjbe12
