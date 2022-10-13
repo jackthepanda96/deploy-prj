@@ -1,4 +1,4 @@
-FROM golang:1.19
+FROM golang:1.19-alpine3.16
 
 ##buat folder APP
 RUN mkdir /app
@@ -7,10 +7,10 @@ RUN mkdir /app
 WORKDIR /app
 
 ##copy seluruh file ke app
-ADD . /app
+ADD . .
 
 ##buat executeable
 RUN go build -o main .
 
 ##jalankan executeable
-CMD ["/app/main"]
+CMD ["./main"]
